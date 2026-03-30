@@ -47,20 +47,26 @@ Place files into your project. No bundlers or build tools required.
 
 ### 1. Add container
 
+```text
 <div id="browserling-dropdown-container"></div>
+```
 
 ---
 
 ### 2. Include styles
 
+```text
 <link rel="stylesheet" href="./browser-selection-styles.css">
+```
 
 ---
 
 ### 3. Include scripts
 
+```text
 <script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/browser-selection.js"></script>
+```
 
 ---
 
