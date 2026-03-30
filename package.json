@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "sass": "^1.98.0"
+  },
+  "name": "browser-selection",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build": "sass scss/styles.scss dist/browser-selection-styles.css --style=compressed --no-source-map"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

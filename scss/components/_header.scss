@@ -1,0 +1,15 @@
+@use "sass:color";
+@use "../../scss/variables" as *;
+
+.#{$prefix}header {
+  width: 100%;
+  &__background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: $radius;
+    padding: $padding;
+    background: $main-gradient;
+  }
+  
+}

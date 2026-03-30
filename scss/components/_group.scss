@@ -1,0 +1,126 @@
+@use "sass:color";
+@use "../../scss/variables" as * ;
+
+.#{$prefix}group {
+  display: flex;
+  align-items: stretch;
+
+  &__input {
+    display: flex;
+    border-radius: $radius 0 0 $radius;
+    position: relative;
+    margin-bottom: 1rem;
+
+    input {
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-position: $input-group-padding 50%;
+      background-image: url(./images/url-icon.svg);
+      padding: $input-group-padding $input-group-padding-width $input-group-padding 44px;
+      border: $main-border;
+      border-color: $color-border;
+      border-radius: $radius;
+      background-color: $input-background;
+      width: 100%;
+    }
+
+    @media (max-width: 560px) {
+      input {
+        padding: $input-group-padding-small $input-group-padding-small $input-group-padding-small 28px !important;
+        background-position: $input-group-padding-small 50% !important;
+      }
+    }    
+
+    button {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      right: $input-group-btn-offset;
+      top:  $input-group-btn-offset;
+      width: $input-group-btn-width;
+      height: calc(100% - ($input-group-btn-offset * 2));
+      position: absolute;
+      background-color: #1d4ed8;
+      color: #fff;
+      padding: 0.65em 1em;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      background-image: url("./images/input-url-arrow.svg");
+      background-repeat: no-repeat;
+      background-size: 25%;
+      background-position: center;
+    }
+
+    @media (max-width: 560px) {
+      button {
+        width: 50px !important;
+        background-size: 50% !important;
+      }
+    }
+  }
+
+  &__list {
+    padding: 0;
+    margin: 0;
+    border: 1px solid $color-border;
+    border-radius: $radius;
+    max-height: $group-list-max-height;
+    .#{$prefix}list {
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid $color-border;
+    }
+    .#{$prefix}lists {
+      margin: 0;
+      padding: 0;
+      max-height: calc(#{$group-list-max-height-inner} - #{$group-list-heading-height});
+      overflow-y: scroll;
+    }    
+    .#{$prefix}list:last-child{
+      border: none;
+    }
+  }
+
+  &__list-heading{
+    font-weight: 500;
+    font-size: 14px;
+    color: #506466;
+  }
+
+  &__dropdown {
+    display: flex;
+    border-radius: $radius;
+
+    .#{$prefix}dropdown__item, .#{$prefix}dropdown__slider {
+      border-radius: 0;
+    }
+
+    div[id]:nth-child(1) {
+     .#{$prefix}dropdown {
+       border-radius: $radius 0 0 $radius;
+     }
+    }
+
+    div[id]:nth-child(2) {
+      .#{$prefix}dropdown {
+        border-radius: 0;
+      }
+    }
+
+    div[id]:nth-child(3) {
+      .#{$prefix}dropdown {
+        border-radius: 0 $radius $radius 0;
+      }
+    }
+  }
+
+  @media (max-width: 560px) {
+    &__dropdown {
+      flex-direction: column;
+    }
+  }
+}
+
+

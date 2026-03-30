@@ -1,0 +1,59 @@
+@use "../../scss/variables" as *;
+
+.#{$prefix}dropdown {
+  border: 1px solid $color-border;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  cursor: pointer;
+  position: relative;
+  background-color: white;
+
+  &__arrow {
+    position: absolute;
+    z-index: 100;
+  }
+
+  &__item {
+    position: relative;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+    &:hover {
+      background-color: $color-border;
+    }
+  }
+
+  &__icon {
+    display: inline-block;
+    margin: $dropdown-text-top 10px 0 $dropdown-text-top;
+  }
+
+  &__text {
+    display: inline-block;
+    position: absolute;
+    top: calc($dropdown-text-top + 1px);
+    font-weight: 500;
+    font-size: $dropdown-font-size;
+  }
+
+  &__slider {
+    display: none;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+    border-radius: $radius;
+    max-height: $dropdown-max-height;
+    overflow-x: hidden;
+    border: 1px solid $color-border;
+    position: absolute;
+    background-color: white;
+    z-index: 9999;
+  }
+}
+
+@media (max-width: 560px) {
+  .#{$prefix}dropdown {
+    border-radius: 0 !important;
+    width: fit-content !important;
+  }
+}
