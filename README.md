@@ -21,17 +21,19 @@ Built with jQuery for simple embedding into static HTML pages.
 
 ## Project Structure
 
+```text
 .
 ├── dist/
-│ ├── images/
-│ ├── js/
-│ │ ├── jquery-2.1.4.min.js
-│ │ └── browser-selection.js
-│ ├── browser-selection-styles.css
-│ └── index.html
+│   ├── images/
+│   ├── js/
+│   │   ├── jquery-2.1.4.min.js
+│   │   └── browser-selection.js
+│   ├── browser-selection-styles.css
+│   └── index.html
 │
 └── scss/
-└── (scss sources)
+    └── (scss sources)
+```
 
 ---
 
