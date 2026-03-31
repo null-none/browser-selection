@@ -49,11 +49,15 @@
     background-color: white;
     z-index: 9999;
   }
-}
 
-@media (max-width: 560px) {
-  .#{$prefix}dropdown {
-    border-radius: 0 !important;
-    width: fit-content !important;
+  @media (max-width: 767px) {
+    width: 100% !important;
+    
+    &__text,
+    &__item,
+    &__slider,
+    &__selected {
+      width: 100% !important;
+    }
   }
 }

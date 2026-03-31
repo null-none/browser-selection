@@ -1,14 +1,17 @@
-$prefix: "wdd-";
+$prefix: "";
 
 $color-border: #CBD5E1 !default;
+$color-input: #333; 
+$color-background: #2B3B80;
+$color-trans: rgb(36.55, 50.15, 108.8);
 
-$radius: 6px !default;
-$padding: 0.65em 1em !default;
-$main-gradient: linear-gradient(91.29deg, #fff0ee, #d8eaff);
+$radius: 8px !default;
+$radius-small: 6px;
+$padding: 0.6rem 1.5rem !default;
 
 $header-title-font-size: 22px;
 
-$font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, Cantarell, "Noto Sans", "Helvetica Neue", Arial, sans-serif !default;
+$font-family: 'Plus Jakarta Sans', sans-serif !default;
 $font-size: 16px !default;
 $font-size-smaller: 12px;
 $font-size-small: 10px;
@@ -18,12 +21,11 @@ $dropdown-text-top: 11px;
 $dropdown-font-size: 14px !default;
 $dropdown-max-height: 200px !default;
 
-$input-group-padding: 19.5px !default;
+$input-group-padding: 8px !default;
 $input-group-padding-small: 6px;
-$input-group-padding-width: 103.5px !default;
 $input-group-btn-offset: 3.5px !default;
 $input-group-btn-width: 90px !default;
-$input-background: #F8FAFC !default;
+$input-background: #FFFFFF !default;
 
 
 $group-list-max-height: 456px !default;

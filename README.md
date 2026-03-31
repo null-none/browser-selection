@@ -25,6 +25,7 @@ Built with jQuery for simple embedding into static HTML pages.
 .
 ├── dist/
 │   ├── images/
+│   ├── fonts/
 │   ├── js/
 │   │   ├── jquery-2.1.4.min.js
 │   │   └── browser-selection.js

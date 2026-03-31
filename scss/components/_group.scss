@@ -8,57 +8,54 @@
   &__input {
     display: flex;
     border-radius: $radius 0 0 $radius;
+    align-items: center;
     position: relative;
     margin-bottom: 1rem;
+    gap: $input-group-padding;
+    padding: $input-group-padding $input-group-padding $input-group-padding $input-group-padding * 2;
+    border: $main-border;
+    border-radius: $radius;
+    background-color: $input-background;      
 
     input {
-      background-repeat: no-repeat;
-      background-attachment: scroll;
-      background-position: $input-group-padding 50%;
-      background-image: url(./images/url-icon.svg);
-      padding: $input-group-padding $input-group-padding-width $input-group-padding 44px;
-      border: $main-border;
-      border-color: $color-border;
-      border-radius: $radius;
-      background-color: $input-background;
+      font: inherit;
+      color: $color-input;
       width: 100%;
+      border: none;
+      outline: none;
     }
-
-    @media (max-width: 560px) {
-      input {
-        padding: $input-group-padding-small $input-group-padding-small $input-group-padding-small 28px !important;
-        background-position: $input-group-padding-small 50% !important;
-      }
-    }    
 
     button {
-      position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      right: $input-group-btn-offset;
-      top:  $input-group-btn-offset;
-      width: $input-group-btn-width;
-      height: calc(100% - ($input-group-btn-offset * 2));
-      position: absolute;
-      background-color: #1d4ed8;
+      flex-shrink: 0;
+      white-space: nowrap;
+      display: inline-block;
+      line-height: 1.6rem;
+      text-align: center;
       color: #fff;
-      padding: 0.65em 1em;
-      border-radius: 6px;
+      font-size: $font-size;
+      font-weight: 500;
+      font-family: $font-family;
+      background-color: $color-background;
+      text-align: center;
       cursor: pointer;
+      padding: $padding;
+      border-radius: $radius;
+      border-color: $color-background;
       transition: background-color 0.2s ease;
-      background-image: url("./images/input-url-arrow.svg");
-      background-repeat: no-repeat;
-      background-size: 25%;
-      background-position: center;
-    }
 
-    @media (max-width: 560px) {
-      button {
-        width: 50px !important;
-        background-size: 50% !important;
+      &:hover {
+        background-color: $color-trans;
       }
     }
+
+    
+    @media (max-width: 576px) {
+      flex-direction: column;
+      align-items: stretch;
+      padding: .75rem;
+      gap: .75rem;
+    }
+
   }
 
   &__list {
@@ -116,9 +113,16 @@
     }
   }
 
-  @media (max-width: 560px) {
+  @media (max-width: 767px) {
+    width: 100% !important;
+    
     &__dropdown {
       flex-direction: column;
+      gap: $input-group-padding;
+
+      .#{$prefix}dropdown {
+        border-radius: $radius-small !important;
+      }
     }
   }
 }

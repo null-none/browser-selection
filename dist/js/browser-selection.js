@@ -16,20 +16,15 @@ function MainFc() {
   );
 
   const wddWrapper = $(`
-    <div id="wdd-wrapper" class="wdd-wrapper">
-      <div class="wdd-header">
-        <div class="wdd-header__background">
-          <div class="wdd-group__input" id="wdd-run">
-            <input id="wdd-input" class="wdd-input" type="text" placeholder="Enter URL" />
-            <button id="wdd-button" class="wdd-button">
-            </button>
-          </div>          
-          <div id="wdd-group__dropdown" class="wdd-group__dropdown">
-            <div id="wdd-platform"></div>
-            <div id="wdd-browser"></div>
-            <div id="wdd-version"></div>
-          </div>
-        </div>
+    <div id="wrapper" class="wrapper">
+      <div class="group__input" id="run">
+        <input id="input" type=""text class="input" placeholder="https://" />
+        <button id="button" class="button">Test Now</button>
+      </div>          
+      <div id="group__dropdown" class="group__dropdown">
+        <div id="platform"></div>
+        <div id="browser"></div>
+        <div id="version"></div>
       </div>
     </div>
   `);
@@ -831,7 +826,7 @@ function MainFc() {
   function generateLink(url) {
     var platformName = "win";
     var platformVersion = $(
-      "#wdd-platform .wdd-dropdown__selected .wdd-dropdown__text",
+      "#platform .dropdown__selected .dropdown__text",
     ).text();
     if (/android/i.test(platformVersion)) {
       platformName = "android";
@@ -844,14 +839,10 @@ function MainFc() {
     }
     platformVersion = platformVersionToShortName(platformVersion);
 
-    var browser = $(
-      "#wdd-browser .wdd-dropdown__selected .wdd-dropdown__text",
-    ).text();
+    var browser = $("#browser .dropdown__selected .dropdown__text").text();
     browser = normalizeBrowserName(browser);
 
-    var version = $(
-      "#wdd-version .wdd-dropdown__selected .wdd-dropdown__text",
-    ).text();
+    var version = $("#version .dropdown__selected .dropdown__text").text();
 
     var newUrl =
       "https://www.browserling.com/browse/" +
@@ -967,15 +958,9 @@ function MainFc() {
     ).text()}`;
 
     localStorageSet({
-      platformName: $(
-        "#wdd-platform .wdd-dropdown__selected .wdd-dropdown__text",
-      ).text(),
-      browserName: $(
-        "#wdd-browser .wdd-dropdown__selected .wdd-dropdown__text",
-      ).text(),
-      version: $(
-        "#wdd-version .wdd-dropdown__selected .wdd-dropdown__text",
-      ).text(),
+      platformName: $("#platform .dropdown__selected .dropdown__text").text(),
+      browserName: $("#browser .dropdown__selected .dropdown__text").text(),
+      version: $("#version .dropdown__selected .dropdown__text").text(),
       url: url,
     });
   }
@@ -1003,14 +988,14 @@ function MainFc() {
     data: [],
     callback: function (selected) {
       var data = init(
-        $("#wdd-platform .wdd-dropdown__selected .wdd-dropdown__text").text(),
-        $("#wdd-browser .wdd-dropdown__selected .wdd-dropdown__text").text(),
+        $("#platform .dropdown__selected .dropdown__text").text(),
+        $("#browser .dropdown__selected .dropdown__text").text(),
         selected,
       );
       lastChanges(data);
     },
   });
-  $("#wdd-version").append(versionDropdown.create());
+  $("#version").append(versionDropdown.create());
 
   var browserDropdown = new Dropdown({
     width: 200,
@@ -1020,13 +1005,13 @@ function MainFc() {
     data: [],
     callback: function (selected) {
       var data = init(
-        $("#wdd-platform .wdd-dropdown__selected .wdd-dropdown__text").text(),
+        $("#platform .dropdown__selected .dropdown__text").text(),
         selected,
       );
       lastChanges(data);
     },
   });
-  $("#wdd-browser").append(browserDropdown.create());
+  $("#browser").append(browserDropdown.create());
 
   var platformDropdown = new Dropdown({
     width: 200,
@@ -1039,7 +1024,7 @@ function MainFc() {
       lastChanges(data);
     },
   });
-  $("#wdd-platform").append(platformDropdown.create());
+  $("#platform").append(platformDropdown.create());
 
   function init(platformName, browserName, version) {
     var platform = getPlatform(platformName);
@@ -1053,9 +1038,9 @@ function MainFc() {
     browserDropdown.update(data[1][0]);
     versionDropdown.update(data[2]);
     if (version) {
-      $(
-        "#wdd-version .wdd-dropdown__selected .wdd-dropdown__item .wdd-dropdown__text",
-      ).text(version);
+      $("#version .dropdown__selected .dropdown__item .dropdown__text").text(
+        version,
+      );
     }
 
     return data;
@@ -1107,15 +1092,13 @@ function MainFc() {
 
       if (items.platformName && items.browserName && items.version) {
         init(items.platformName, items.browserName);
-        $("#wdd-version .wdd-dropdown__slider .wdd-dropdown__item").each(
-          function () {
-            if ($(this).text() == items.version) {
-              $(
-                "#wdd-version .wdd-dropdown__selected .wdd-dropdown__text",
-              ).text($(this).text());
-            }
-          },
-        );
+        $("#version .dropdown__slider .dropdown__item").each(function () {
+          if ($(this).text() == items.version) {
+            $("#version .dropdown__selected .dropdown__text").text(
+              $(this).text(),
+            );
+          }
+        });
       } else {
         init("Windows 10", "Chrome");
       }
@@ -1123,14 +1106,14 @@ function MainFc() {
   );
 
   // make run work
-  $("#wdd-run button").click(function () {
-    var url = $("#wdd-run input").val();
+  $("#run button").click(function () {
+    var url = $("#run input").val();
     console.log("url", url);
     openUrl(url);
   });
 
   // fill url field with current tab's url
-  $("#wdd-run input").val(window.location.href);
+  $("#run input").val(window.location.href);
 }
 
 function Dropdown(opts) {
@@ -1142,20 +1125,20 @@ function Dropdown(opts) {
   var slider;
 
   function appendItem(x) {
-    var item = $('<div class="wdd-dropdown__item">');
+    var item = $('<div class="dropdown__item">');
 
     item.on("click", function () {
       // update selection
       if (x.icon) {
-        selected.find(".wdd-dropdown__icon img").attr("src", x.icon);
+        selected.find(".dropdown__icon img").attr("src", x.icon);
       }
       if (typeof x === "object") {
-        selected.find(".wdd-dropdown__text").text(x.text);
+        selected.find(".dropdown__text").text(x.text);
       } else if (typeof x === "number" || typeof x === "string") {
-        selected.find(".wdd-dropdown__text").text(x);
+        selected.find(".dropdown__text").text(x);
       }
       if (opts.callback) {
-        opts.callback(selected.find(".wdd-dropdown__text").text());
+        opts.callback(selected.find(".dropdown__text").text());
       }
       selected.click();
     });
@@ -1166,7 +1149,7 @@ function Dropdown(opts) {
     });
 
     if (x.icon) {
-      var icon = $('<div class="wdd-dropdown__icon">');
+      var icon = $('<div class="dropdown__icon">');
       var img = $(`<img src=".${x.icon}">`);
       //var img = $(`<img src="https://www.browserling.com/${x.icon}">`);
       if (opts.iconWidth) img.width(opts.iconWidth);
@@ -1174,7 +1157,7 @@ function Dropdown(opts) {
       icon.append(img);
     }
 
-    var text = $('<div class="wdd-dropdown__text">');
+    var text = $('<div class="dropdown__text">');
     if (typeof x === "object") {
       text.append(x.text);
     } else if (typeof x === "number" || typeof x === "string") {
@@ -1228,20 +1211,20 @@ function Dropdown(opts) {
   }
 
   self.update = function (data) {
-    dropdown.find(".wdd-dropdown__item").remove();
+    dropdown.find(".dropdown__item").remove();
     appendAllItems(data);
   };
 
   self.create = function () {
     var data = opts.data;
-    dropdown = $('<div class="wdd-dropdown">');
-    var arrow = $('<div class="wdd-dropdown__arrow ">');
+    dropdown = $('<div class="dropdown">');
+    var arrow = $('<div class="dropdown__arrow ">');
     arrow.append('<img src="./images/dropdown-arrow-down.svg">');
-    //var arrow = $('<div class="wdd-dropdown__arrow wdd-icon-arrow-down">');
 
     arrow.css({
       top: opts.height / 2 - 15,
-      left: opts.width - 25,
+      //left: opts.width - 25,
+      right: 14,
     });
 
     dropdown.append(arrow);
@@ -1250,10 +1233,10 @@ function Dropdown(opts) {
       dropdown.css({ "background-color": opts.backgroundColor });
     }
 
-    selected = $('<div class="wdd-dropdown__selected">');
+    selected = $('<div class="dropdown__selected">');
     dropdown.append(selected);
 
-    slider = $('<div class="wdd-dropdown__slider">');
+    slider = $('<div class="dropdown__slider">');
     dropdown.append(slider);
 
     appendAllItems(data);
@@ -1264,20 +1247,14 @@ function Dropdown(opts) {
         if (opts.onClick) opts.onClick("hidden");
         slider.slideUp("fast");
         dropdown
-          .find(".wdd-dropdown__arrow img")
+          .find(".dropdown__arrow img")
           .attr("src", "./images/dropdown-arrow-down.svg");
-        /* .find(".wdd-dropdown__arrow")
-          .addClass("wdd-icon-arrow-down")
-          .removeClass("wdd-icon-arrow-up");*/
       } else {
         if (opts.onClick) opts.onClick("visible");
         slider.slideDown("fast");
         dropdown
-          .find(".wdd-dropdown__arrow img")
+          .find(".dropdown__arrow img")
           .attr("src", "./images/dropdown-arrow-up.svg");
-        /*  .find(".wdd-dropdown__arrow")
-          .addClass("wdd-icon-arrow-up")
-          .removeClass("wdd-icon-arrow-down");*/
       }
     });
     arrow.on("click", function () {
