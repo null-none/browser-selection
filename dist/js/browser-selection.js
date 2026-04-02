@@ -28,7 +28,7 @@ function MainFc() {
   containerElem.append(wddWrapper);
 
   var g_AllPlatforms;
-  var g_AllBrowserVersions;
+  var g_AllBrowserVersions = {};
   var g_AllBrowserTypes;
   var g_AllBrowserOrder;
 
@@ -81,210 +81,6 @@ function MainFc() {
     "brave",
   ];
 
-  /*  g_AllPlatforms = [
-    {
-      name: "mac",
-      version: "26",
-      text: "macOS 26 Tahoe",
-      icon: "/images/os-icons/macos-26.png",
-    },
-    {
-      name: "mac",
-      version: "15",
-      text: "macOS 15 Sequoia",
-      icon: "/images/os-icons/macos-15.png",
-    },
-    {
-      name: "mac",
-      version: "14",
-      text: "macOS 14 Sonoma",
-      icon: "/images/os-icons/macos-14.png",
-    },
-    {
-      name: "mac",
-      version: "13",
-      text: "macOS 13 Ventura",
-      icon: "/images/os-icons/macos-13.png",
-    },
-    {
-      name: "mac",
-      version: "12",
-      text: "macOS 12 Monterey",
-      icon: "/images/os-icons/macos-12.png",
-    },
-
-    {
-      name: "win",
-      version: "11",
-      text: "Windows 11",
-      icon: "/images/os-icons/windows-11.png",
-    },
-    {
-      name: "win",
-      version: "10",
-      text: "Windows 10",
-      icon: "/images/os-icons/windows-10.png",
-      selected: true,
-    },
-    {
-      name: "win",
-      version: "8.1",
-      text: "Windows 8.1",
-      icon: "/images/os-icons/windows-81.png",
-    },
-    {
-      name: "win",
-      version: "8",
-      text: "Windows 8",
-      icon: "/images/os-icons/windows-8.png",
-    },
-    {
-      name: "win",
-      version: "7",
-      text: "Windows 7",
-      icon: "/images/os-icons/windows-7.png",
-    },
-    {
-      name: "win",
-      version: "vista",
-      text: "Windows Vista",
-      icon: "/images/os-icons/windows-vista.png",
-    },
-    {
-      name: "win",
-      version: "xp",
-      text: "Windows XP",
-      icon: "/images/os-icons/windows-xp.png",
-    },
-
-    {
-      name: "android",
-      version: "15",
-      text: "Android 15",
-      icon: "/images/os-icons/android-15.png",
-    },
-    {
-      name: "android",
-      version: "14",
-      text: "Android 14",
-      icon: "/images/os-icons/android-14.png",
-    },
-    {
-      name: "android",
-      version: "13",
-      text: "Android 13",
-      icon: "/images/os-icons/android-13.png",
-    },
-    {
-      name: "android",
-      version: "12.1",
-      text: "Android 12.1",
-      icon: "/images/os-icons/android-12.png",
-    },
-    {
-      name: "android",
-      version: "12",
-      text: "Android 12",
-      icon: "/images/os-icons/android-12.png",
-    },
-    {
-      name: "android",
-      version: "11",
-      text: "Android 11",
-      icon: "/images/os-icons/android-11.png",
-    },
-    {
-      name: "android",
-      version: "10",
-      text: "Android 10",
-      icon: "/images/os-icons/android-10.png",
-    },
-    {
-      name: "android",
-      version: "9",
-      text: "Android 9 Pie",
-      icon: "/images/os-icons/android-9.png",
-    },
-    {
-      name: "android",
-      version: "8.1",
-      text: "Android 8.1 Oreo",
-      icon: "/images/os-icons/android-81.png",
-    },
-    {
-      name: "android",
-      version: "8.0",
-      text: "Android 8.0 Oreo",
-      icon: "/images/os-icons/android-80.png",
-    },
-    {
-      name: "android",
-      version: "7.1",
-      text: "Android 7.1 Nougat",
-      icon: "/images/os-icons/android-71.png",
-    },
-    {
-      name: "android",
-      version: "7.0",
-      text: "Android 7.0 Nougat",
-      icon: "/images/os-icons/android-70.png",
-    },
-    {
-      name: "android",
-      version: "6.0",
-      text: "Android 6.0 Marshmallow",
-      icon: "/images/os-icons/android-60.png",
-    },
-    {
-      name: "android",
-      version: "5.1",
-      text: "Android 5.1 Lollipop",
-      icon: "/images/os-icons/android-51.png",
-    },
-    {
-      name: "android",
-      version: "5.0",
-      text: "Android 5.0 Lollipop",
-      icon: "/images/os-icons/android-50.png",
-    },
-    {
-      name: "android",
-      version: "4.4",
-      text: "Android 4.4 KitKat",
-      icon: "/images/os-icons/android-44.png",
-    },
-    {
-      name: "ios",
-      version: "26",
-      text: "iOS 26",
-      icon: "/images/os-icons/ios-26.png",
-    },
-    {
-      name: "ios",
-      version: "18",
-      text: "iOS 18",
-      icon: "/images/os-icons/ios-18.png",
-    },
-    {
-      name: "ios",
-      version: "17",
-      text: "iOS 17",
-      icon: "/images/os-icons/ios-17.png",
-    },
-    {
-      name: "ios",
-      version: "16",
-      text: "iOS 16",
-      icon: "/images/os-icons/ios-16.png",
-    },
-    {
-      name: "ios",
-      version: "15",
-      text: "iOS 15",
-      icon: "/images/os-icons/ios-15.png",
-    },
-  ];
-*/
   const platformNamesArray = [
     "macOS 26 Tahoe",
     "macOS 15 Sequoia",
@@ -680,6 +476,17 @@ function MainFc() {
     },
   };
 
+  /*function getAllBrowserVersionsJSON() {
+    fetch("/data/browsers.json")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        console.log("ok");
+        g_AllBrowserVersions = updateBrowserList(data);
+      });
+  }*/
+
   function platformVersionToShortName(platformVersion) {
     return platformVersion.split(" ")[1].toLowerCase();
   }
@@ -726,98 +533,31 @@ function MainFc() {
 
   function updateBrowserList(browserList) {
     var list = {};
+    Object.keys(browserList).forEach((os) => {
+      var osPlatform = Object.keys(browserList[os]);
+      osPlatform.forEach(function (platform) {
+        list[os + platform] = {};
 
-    var winPlatform = Object.keys(browserList.win);
-    winPlatform.forEach(function (platform) {
-      list["win" + platform] = {};
+        var osBrowsers = Object.keys(browserList[os][platform]);
+        osBrowsers.forEach(function (browser) {
+          // put any browser versions with text (nightly, next, canary) at the first position
+          var orderedBrowserList = [];
+          browserList[os][platform][browser].forEach(function (v) {
+            if (/^\d+/.test(v)) {
+              orderedBrowserList.push(v);
+            } else {
+              orderedBrowserList.unshift(v);
+            }
+          });
+          // make the last item selected for Dropdown
+          var last = orderedBrowserList[orderedBrowserList.length - 1];
+          last = { text: last, selected: true };
+          orderedBrowserList[orderedBrowserList.length - 1] = last;
 
-      var winBrowsers = Object.keys(browserList.win[platform]);
-      winBrowsers.forEach(function (browser) {
-        // put any browser versions with text (nightly, next, canary) at the first position
-        var orderedBrowserList = [];
-        browserList["win"][platform][browser].forEach(function (v) {
-          if (/^\d+/.test(v)) {
-            orderedBrowserList.push(v);
-          } else {
-            orderedBrowserList.unshift(v);
-          }
+          list[os + platform][browser] = orderedBrowserList;
         });
-        // make the last item selected for Dropdown
-        var last = orderedBrowserList[orderedBrowserList.length - 1];
-        last = { text: last, selected: true };
-        orderedBrowserList[orderedBrowserList.length - 1] = last;
-
-        list["win" + platform][browser] = orderedBrowserList;
       });
     });
-
-    var androidPlatform = Object.keys(browserList.android);
-    androidPlatform.forEach(function (platform) {
-      list["android" + platform] = {};
-
-      var androidBrowsers = Object.keys(browserList.android[platform]);
-      androidBrowsers.forEach(function (browser) {
-        // put any browser versions with text (nightly, next, canary) at the first position
-        var orderedBrowserList = [];
-        browserList["android"][platform][browser].forEach(function (v) {
-          if (/^\d+/.test(v)) {
-            orderedBrowserList.push(v);
-          } else {
-            orderedBrowserList.unshift(v);
-          }
-        });
-        // make the last item selected for Dropdown
-        var last = orderedBrowserList[orderedBrowserList.length - 1];
-        last = { text: last, selected: true };
-        orderedBrowserList[orderedBrowserList.length - 1] = last;
-
-        list["android" + platform][browser] = orderedBrowserList;
-      });
-    });
-
-    var macPlatform = Object.keys(browserList.mac);
-    macPlatform.forEach(function (platform) {
-      list["mac" + platform] = {};
-
-      var macBrowsers = Object.keys(browserList.mac[platform]);
-      macBrowsers.forEach(function (browser) {
-        // put any browser versions with text (nightly, next, canary) at the first position
-        var orderedBrowserList = [];
-        browserList["mac"][platform][browser].forEach(function (v) {
-          if (/^\d+/.test(v)) {
-            orderedBrowserList.push(v);
-          } else {
-            orderedBrowserList.unshift(v);
-          }
-        });
-        // make the last item selected for Dropdown
-        var last = orderedBrowserList[orderedBrowserList.length - 1];
-        last = { text: last, selected: true };
-        orderedBrowserList[orderedBrowserList.length - 1] = last;
-
-        list["mac" + platform][browser] = orderedBrowserList;
-      });
-    });
-
-    var iosPlatform = Object.keys(browserList.ios);
-    iosPlatform.forEach(function (platform) {
-      list["ios" + platform] = {};
-
-      var iosBrowsers = Object.keys(browserList.ios[platform]);
-      iosBrowsers.forEach(function (browser) {
-        var orderedBrowserList = [];
-        browserList["ios"][platform][browser].forEach(function (v) {
-          orderedBrowserList.push(v);
-        });
-        // make the last item selected for Dropdown
-        var last = orderedBrowserList[orderedBrowserList.length - 1];
-        last = { text: last, selected: true };
-        orderedBrowserList[orderedBrowserList.length - 1] = last;
-
-        list["ios" + platform][browser] = orderedBrowserList;
-      });
-    });
-
     return list;
   }
 
@@ -896,16 +636,8 @@ function MainFc() {
 
   function getBrowser(plaformName, browserName) {
     var platformVersion = platformVersionToShortName(plaformName);
-    var platform = "win";
-    if (/android/i.test(plaformName)) {
-      platform = "android";
-    }
-    if (/mac/i.test(plaformName)) {
-      platform = "mac";
-    }
-    if (/ios/i.test(plaformName)) {
-      platform = "ios";
-    }
+    var platform = normalizePlatformName(plaformName);
+
     plaformName = platform + platformVersion;
     var allBrowserTypes = JSON.parse(JSON.stringify(g_AllBrowserTypes));
     var keysAllBrowserTypes = Object.keys(allBrowserTypes);
@@ -1147,11 +879,8 @@ function Dropdown(opts) {
       selected.click();
     });
 
-    item.style.width =
-      typeof opts.width === "number" ? opts.width + "px" : opts.width;
-
-    item.style.height =
-      typeof opts.height === "number" ? opts.height + "px" : opts.height;
+    item.style.width = opts.width + "px";
+    item.style.height = opts.height + "px";
 
     if (x.icon) {
       var icon = createDiv({ class: "dropdown__icon" });
@@ -1239,17 +968,13 @@ function Dropdown(opts) {
     selected.addEventListener("click", function () {
       if (slider.style.display === "block") {
         if (opts.onClick) opts.onClick("hidden");
-
         slider.style.display = "none";
-
         dropdown
           .querySelector(".dropdown__arrow img")
           .setAttribute("src", "./images/dropdown-arrow-down.svg");
       } else {
         if (opts.onClick) opts.onClick("visible");
-
         slider.style.display = "block";
-
         dropdown
           .querySelector(".dropdown__arrow img")
           .setAttribute("src", "./images/dropdown-arrow-up.svg");
