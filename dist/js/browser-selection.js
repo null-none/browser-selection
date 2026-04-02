@@ -6,18 +6,15 @@ if (document.readyState === "loading") {
 }
 
 function MainFc() {
-  const url = new URL(scriptSrc);
-
-  //const basePath = url.origin + url.pathname.replace(/\/[^/]*$/, "/");
-  //const basePath = url.pathname.replace(/\/[^/]*$/, "/");
-
   const containerElem = document.getElementById(
     "browserling-dropdown-container",
   );
 
-  const wddWrapper = $(`
-    <div id="wrapper" class="wrapper">
-      <div class="group__input" id="run">
+  const wddWrapper = createDiv({
+    id: "wrapper",
+    class: "wrapper",
+    innerHTML: `
+       <div class="group__input" id="run">
         <input id="input" type=""text class="input" placeholder="https://" />
         <button id="button" class="button">Test Now</button>
       </div>          
@@ -25,11 +22,10 @@ function MainFc() {
         <div id="platform"></div>
         <div id="browser"></div>
         <div id="version"></div>
-      </div>
-    </div>
-  `);
+      </div>`,
+  });
 
-  $(containerElem).append(wddWrapper);
+  containerElem.append(wddWrapper);
 
   var g_AllPlatforms;
   var g_AllBrowserVersions;
@@ -85,7 +81,7 @@ function MainFc() {
     "brave",
   ];
 
-  g_AllPlatforms = [
+  /*  g_AllPlatforms = [
     {
       name: "mac",
       version: "26",
@@ -288,6 +284,64 @@ function MainFc() {
       icon: "/images/os-icons/ios-15.png",
     },
   ];
+*/
+  const platformNamesArray = [
+    "macOS 26 Tahoe",
+    "macOS 15 Sequoia",
+    "macOS 14 Sonoma",
+    "macOS 13 Ventura",
+    "macOS 12 Monterey",
+    "Windows 11",
+    "Windows 10",
+    "Windows 8.1",
+    "Windows 8",
+    "Windows 7",
+    "Windows Vista",
+    "Windows XP",
+    "Android 15",
+    "Android 14",
+    "Android 13",
+    "Android 12.1",
+    "Android 12",
+    "Android 11",
+    "Android 10",
+    "Android 9 Pie",
+    "Android 8.1 Oreo",
+    "Android 8.0 Oreo",
+    "Android 7.1 Nougat",
+    "Android 7.0 Nougat",
+    "Android 6.0 Marshmallow",
+    "Android 5.1 Lollipop",
+    "Android 5.0 Lollipop",
+    "Android 4.4 KitKat",
+    "iOS 26",
+    "iOS 18",
+    "iOS 17",
+    "iOS 16",
+    "iOS 15",
+  ];
+
+  g_AllPlatforms = [];
+  platformNamesArray.forEach((os) => {
+    const osText = os.split(" ")[0];
+    const osVersion = os.split(" ")[1].toLowerCase();
+    const osName =
+      osText === "Android" ? "android" : osText.toLowerCase().slice(0, 3);
+    const iconUrl =
+      os === "Android 12.1"
+        ? "/images/os-icons/android-12.png"
+        : `/images/os-icons/${osText.toLowerCase()}-${osVersion.replace(".", "")}.png`;
+
+    const resObj = {
+      name: osName,
+      version: osVersion,
+      text: os,
+      icon: iconUrl,
+    };
+
+    if (os === "Windows 10") resObj.selected = true;
+    g_AllPlatforms.push(resObj);
+  });
 
   g_AllBrowserTypes = {
     ie: { text: "Internet Explorer", icon: "/images/browser-icons/ie.png" },
@@ -627,75 +681,7 @@ function MainFc() {
   };
 
   function platformVersionToShortName(platformVersion) {
-    if (platformVersion == "Windows XP") {
-      platformVersion = "xp";
-    } else if (platformVersion == "Windows Vista") {
-      platformVersion = "vista";
-    } else if (platformVersion == "Windows 7") {
-      platformVersion = "7";
-    } else if (platformVersion == "Windows 8") {
-      platformVersion = "8";
-    } else if (platformVersion == "Windows 8.1") {
-      platformVersion = "8.1";
-    } else if (platformVersion == "Windows 10") {
-      platformVersion = "10";
-    } else if (platformVersion == "Windows 11") {
-      platformVersion = "11";
-    } else if (platformVersion == "Android 15") {
-      platformVersion = "15";
-    } else if (platformVersion == "Android 14") {
-      platformVersion = "14";
-    } else if (platformVersion == "Android 13") {
-      platformVersion = "13";
-    } else if (platformVersion == "Android 12.1") {
-      platformVersion = "12.1";
-    } else if (platformVersion == "Android 12") {
-      platformVersion = "12";
-    } else if (platformVersion == "Android 11") {
-      platformVersion = "11";
-    } else if (platformVersion == "Android 10") {
-      platformVersion = "10";
-    } else if (platformVersion == "Android 9 Pie") {
-      platformVersion = "9";
-    } else if (platformVersion == "Android 8.1 Oreo") {
-      platformVersion = "8.1";
-    } else if (platformVersion == "Android 8.0 Oreo") {
-      platformVersion = "8.0";
-    } else if (platformVersion == "Android 7.1 Nougat") {
-      platformVersion = "7.1";
-    } else if (platformVersion == "Android 7.0 Nougat") {
-      platformVersion = "7.0";
-    } else if (platformVersion == "Android 6.0 Marshmallow") {
-      platformVersion = "6.0";
-    } else if (platformVersion == "Android 5.1 Lollipop") {
-      platformVersion = "5.1";
-    } else if (platformVersion == "Android 5.0 Lollipop") {
-      platformVersion = "5.0";
-    } else if (platformVersion == "Android 4.4 KitKat") {
-      platformVersion = "4.4";
-    } else if (platformVersion == "macOS 26 Tahoe") {
-      platformVersion = "26";
-    } else if (platformVersion == "macOS 15 Sequoia") {
-      platformVersion = "15";
-    } else if (platformVersion == "macOS 14 Sonoma") {
-      platformVersion = "14";
-    } else if (platformVersion == "macOS 13 Ventura") {
-      platformVersion = "13";
-    } else if (platformVersion == "macOS 12 Monterey") {
-      platformVersion = "12";
-    } else if (platformVersion == "iOS 15") {
-      platformVersion = "15";
-    } else if (platformVersion == "iOS 16") {
-      platformVersion = "16";
-    } else if (platformVersion == "iOS 17") {
-      platformVersion = "17";
-    } else if (platformVersion == "iOS 18") {
-      platformVersion = "18";
-    } else if (platformVersion == "iOS 26") {
-      platformVersion = "26";
-    }
-
-    return platformVersion;
+    return platformVersion.split(" ")[1].toLowerCase();
   }
 
   function normalizeBrowserName(browser) {
@@ -711,19 +697,31 @@ function MainFc() {
     return browser;
   }
 
+  function normalizePlatformName(platform) {
+    let platformName = "win";
+
+    if (/android/i.test(platform)) {
+      platformName = "android";
+    } else if (/mac/i.test(platform)) {
+      platformName = "mac";
+    } else if (/ios/i.test(platform)) {
+      platformName = "ios";
+    }
+
+    return platformName;
+  }
+
   function getLatestBrowsers(cb) {
-    $.get(
-      "https://www.browserling.com/browsers.json",
-      function (data) {
+    fetch("https://www.browserling.com/browsers.json")
+      .then((res) => res.text())
+      .then((data) => {
         try {
-          var browsers = JSON.parse(data);
-          cb(browsers);
-        } catch (e) {
+          cb(JSON.parse(data));
+        } catch {
           cb(null);
         }
-      },
-      "text",
-    );
+      })
+      .catch(() => cb(null));
   }
 
   function updateBrowserList(browserList) {
@@ -824,27 +822,23 @@ function MainFc() {
   }
 
   function generateLink(url) {
-    var platformName = "win";
-    var platformVersion = $(
-      "#platform .dropdown__selected .dropdown__text",
-    ).text();
-    if (/android/i.test(platformVersion)) {
-      platformName = "android";
-    }
-    if (/mac/i.test(platformVersion)) {
-      platformName = "mac";
-    }
-    if (/ios/i.test(platformVersion)) {
-      platformName = "ios";
-    }
+    let platformVersion =
+      document.querySelector("#platform .dropdown__selected .dropdown__text")
+        ?.textContent || "";
+
+    const platformName = normalizePlatformName(platformVersion);
+
     platformVersion = platformVersionToShortName(platformVersion);
 
-    var browser = $("#browser .dropdown__selected .dropdown__text").text();
+    let browser =
+      document.querySelector("#browser .dropdown__selected .dropdown__text")
+        ?.textContent || "";
     browser = normalizeBrowserName(browser);
 
-    var version = $("#version .dropdown__selected .dropdown__text").text();
-
-    var newUrl =
+    const version =
+      document.querySelector("#version .dropdown__selected .dropdown__text")
+        ?.textContent || "";
+    const newUrl =
       "https://www.browserling.com/browse/" +
       platformName +
       platformVersion +
@@ -863,17 +857,8 @@ function MainFc() {
   }
 
   function getPlatform(plaformName) {
-    var platformVersion = platformVersionToShortName(plaformName);
-    var platform = "win";
-    if (/android/i.test(plaformName)) {
-      platform = "android";
-    }
-    if (/mac/i.test(plaformName)) {
-      platform = "mac";
-    }
-    if (/ios/i.test(plaformName)) {
-      platform = "ios";
-    }
+    const platformVersion = platformVersionToShortName(plaformName);
+    const platform = normalizePlatformName(plaformName);
     plaformName = platform + platformVersion;
 
     var allPlatforms = JSON.parse(JSON.stringify(g_AllPlatforms));
@@ -894,9 +879,10 @@ function MainFc() {
     for (var i = 0; i < allBrowserOrder.length; i++) {
       browsers.push(allBrowserTypes[allBrowserOrder[i]]);
     }
+
     return [
-      $.map(allPlatforms, function (value, i) {
-        if (value.name + value.version == plaformName) {
+      allPlatforms.map((value) => {
+        if (value.name + value.version === plaformName) {
           value.selected = true;
         } else {
           delete value.selected;
@@ -929,19 +915,19 @@ function MainFc() {
         delete allBrowserTypes[keysAllBrowserTypes[i]];
       }
     }
-    return [
-      $.map(allBrowserTypes, function (value, i) {
-        if (value.text == browserName) {
-          value.selected = true;
-        } else {
-          delete value.selected;
-        }
-        return value;
-      }),
-      Object.keys(allBrowserTypes).filter(function (value, index) {
-        return allBrowserTypes[value].selected == true;
-      })[0],
-    ];
+
+    const mapped = Object.keys(allBrowserTypes).map((k) => {
+      const v = allBrowserTypes[k];
+      v.selected =
+        v.text === browserName ? true : (delete v.selected, undefined);
+      return v;
+    });
+
+    const selectedKey = Object.keys(allBrowserTypes).find(
+      (k) => allBrowserTypes[k].selected,
+    );
+
+    return [mapped, selectedKey];
   }
 
   function getVersion(platformName, browserName) {
@@ -953,14 +939,21 @@ function MainFc() {
   }
 
   function lastChanges(data) {
-    var url = `${data[0][2]}/${data[1][1]}${$(
-      "#version .dropdown__selected .dropdown__text",
-    ).text()}`;
+    var url = `${data[0][2]}/${data[1][1]}${
+      document.querySelector("#version .dropdown__selected .dropdown__text")
+        ?.textContent || ""
+    }`;
 
     localStorageSet({
-      platformName: $("#platform .dropdown__selected .dropdown__text").text(),
-      browserName: $("#browser .dropdown__selected .dropdown__text").text(),
-      version: $("#version .dropdown__selected .dropdown__text").text(),
+      platformName:
+        document.querySelector("#platform .dropdown__selected .dropdown__text")
+          ?.textContent || "",
+      browserName:
+        document.querySelector("#browser .dropdown__selected .dropdown__text")
+          ?.textContent || "",
+      version:
+        document.querySelector("#version .dropdown__selected .dropdown__text")
+          ?.textContent || "",
       url: url,
     });
   }
@@ -988,14 +981,17 @@ function MainFc() {
     data: [],
     callback: function (selected) {
       var data = init(
-        $("#platform .dropdown__selected .dropdown__text").text(),
-        $("#browser .dropdown__selected .dropdown__text").text(),
+        document.querySelector("#platform .dropdown__selected .dropdown__text")
+          ?.textContent || "",
+        document.querySelector("#browser .dropdown__selected .dropdown__text")
+          ?.textContent || "",
         selected,
       );
       lastChanges(data);
     },
   });
-  $("#version").append(versionDropdown.create());
+
+  document.querySelector("#version")?.append(versionDropdown.create());
 
   var browserDropdown = new Dropdown({
     width: 200,
@@ -1005,13 +1001,14 @@ function MainFc() {
     data: [],
     callback: function (selected) {
       var data = init(
-        $("#platform .dropdown__selected .dropdown__text").text(),
+        document.querySelector("#platform .dropdown__selected .dropdown__text")
+          ?.textContent || "",
         selected,
       );
       lastChanges(data);
     },
   });
-  $("#browser").append(browserDropdown.create());
+  document.querySelector("#browser").append(browserDropdown.create());
 
   var platformDropdown = new Dropdown({
     width: 200,
@@ -1024,7 +1021,7 @@ function MainFc() {
       lastChanges(data);
     },
   });
-  $("#platform").append(platformDropdown.create());
+  document.querySelector("#platform").append(platformDropdown.create());
 
   function init(platformName, browserName, version) {
     var platform = getPlatform(platformName);
@@ -1032,15 +1029,16 @@ function MainFc() {
       browserName = platform[1][0].text;
     }
     var browser = getBrowser(platformName, browserName);
+
     var versions = getVersion(platform[2], browser[1]);
     var data = [platform, browser, versions];
     platformDropdown.update(data[0][0]);
     browserDropdown.update(data[1][0]);
     versionDropdown.update(data[2]);
     if (version) {
-      $("#version .dropdown__selected .dropdown__item .dropdown__text").text(
-        version,
-      );
+      document.querySelector(
+        "#version .dropdown__selected .dropdown__item .dropdown__text",
+      ).textContent = version;
     }
 
     return data;
@@ -1092,13 +1090,15 @@ function MainFc() {
 
       if (items.platformName && items.browserName && items.version) {
         init(items.platformName, items.browserName);
-        $("#version .dropdown__slider .dropdown__item").each(function () {
-          if ($(this).text() == items.version) {
-            $("#version .dropdown__selected .dropdown__text").text(
-              $(this).text(),
-            );
-          }
-        });
+        document
+          .querySelectorAll("#version .dropdown__slider .dropdown__item")
+          .forEach(function (el) {
+            if (el.textContent === items.version) {
+              document.querySelector(
+                "#version .dropdown__selected .dropdown__text",
+              ).textContent = el.textContent;
+            }
+          });
       } else {
         init("Windows 10", "Chrome");
       }
@@ -1106,14 +1106,13 @@ function MainFc() {
   );
 
   // make run work
-  $("#run button").click(function () {
-    var url = $("#run input").val();
-    console.log("url", url);
+  document.querySelector("#run button").addEventListener("click", function () {
+    var url = document.querySelector("#run input").value;
     openUrl(url);
   });
 
   // fill url field with current tab's url
-  $("#run input").val(window.location.href);
+  document.querySelector("#run input").value = window.location.href;
 }
 
 function Dropdown(opts) {
@@ -1125,83 +1124,77 @@ function Dropdown(opts) {
   var slider;
 
   function appendItem(x) {
-    var item = $('<div class="dropdown__item">');
+    var item = createDiv({ class: "dropdown__item" });
 
-    item.on("click", function () {
+    item.addEventListener("click", function () {
       // update selection
       if (x.icon) {
-        selected.find(".dropdown__icon img").attr("src", x.icon);
+        selected
+          .querySelector(".dropdown__icon img")
+          .setAttribute("src", x.icon);
       }
+
       if (typeof x === "object") {
-        selected.find(".dropdown__text").text(x.text);
+        selected.querySelector(".dropdown__text").textContent = x.text;
       } else if (typeof x === "number" || typeof x === "string") {
-        selected.find(".dropdown__text").text(x);
+        selected.querySelector(".dropdown__text").textContent = x;
       }
+
       if (opts.callback) {
-        opts.callback(selected.find(".dropdown__text").text());
+        opts.callback(selected.querySelector(".dropdown__text").textContent);
       }
+
       selected.click();
     });
 
-    item.css({
-      width: opts.width,
-      height: opts.height,
-    });
+    item.style.width =
+      typeof opts.width === "number" ? opts.width + "px" : opts.width;
+
+    item.style.height =
+      typeof opts.height === "number" ? opts.height + "px" : opts.height;
 
     if (x.icon) {
-      var icon = $('<div class="dropdown__icon">');
-      var img = $(`<img src=".${x.icon}">`);
-      //var img = $(`<img src="https://www.browserling.com/${x.icon}">`);
-      if (opts.iconWidth) img.width(opts.iconWidth);
-      if (opts.iconHeight) img.height(opts.iconHeight);
-      icon.append(img);
+      var icon = createDiv({ class: "dropdown__icon" });
+      var img = document.createElement("img");
+      img.src = "." + x.icon;
+
+      if (opts.iconWidth) img.width = opts.iconWidth;
+      if (opts.iconHeight) img.height = opts.iconHeight;
+
+      icon.appendChild(img);
+      item.appendChild(icon);
     }
 
-    var text = $('<div class="dropdown__text">');
+    var text = createDiv({ class: "dropdown__text" });
+
     if (typeof x === "object") {
-      text.append(x.text);
+      text.textContent = x.text;
     } else if (typeof x === "number" || typeof x === "string") {
-      text.append(x);
+      text.textContent = x;
     }
 
     if (x.center || opts.center) {
-      text.css({
-        left: opts.width / 2 - 20,
-      });
+      text.style.left = opts.width / 2 - 20 + "px";
     }
 
-    if (x.icon) {
-      item.append(icon);
-    }
-
-    item.append(text);
-    slider.append(item);
+    item.appendChild(text);
+    slider.appendChild(item);
 
     if (x.selected) {
-      selected.append(item.clone());
+      selected.appendChild(item.cloneNode(true));
     }
   }
 
   function appendAllItems(data) {
-    data = Object.keys(data).map((key) => data[key]);
+    data = Object.values(data);
+    if (!data.length) return;
+
     // if none of items are selected, select first
-    var oneSelected = false;
-
-    data.forEach(function (x) {
-      if (x.selected) oneSelected = true;
-    });
-
-    if (!oneSelected) {
-      if (data.length) {
-        if (typeof data[0] === "object") {
-          data[0] = {
-            text: data[0].text,
-            icon: data[0].icon,
-            selected: true,
-          };
-        } else {
-          data[0] = { text: data[0], selected: true };
-        }
+    if (!data.some((x) => x.selected)) {
+      if (typeof data[0] === "object") {
+        data[0].selected = true;
+      } else {
+        data[0] = { text: data[0], selected: true };
       }
     }
 
@@ -1211,56 +1204,85 @@ function Dropdown(opts) {
   }
 
   self.update = function (data) {
-    dropdown.find(".dropdown__item").remove();
+    dropdown.querySelectorAll(".dropdown__item").forEach((el) => el.remove());
     appendAllItems(data);
   };
 
   self.create = function () {
     var data = opts.data;
-    dropdown = $('<div class="dropdown">');
-    var arrow = $('<div class="dropdown__arrow ">');
-    arrow.append('<img src="./images/dropdown-arrow-down.svg">');
 
-    arrow.css({
-      top: opts.height / 2 - 15,
-      //left: opts.width - 25,
-      right: 14,
-    });
+    dropdown = createDiv({ class: "dropdown" });
 
-    dropdown.append(arrow);
+    var arrow = createDiv({ class: "dropdown__arrow" });
+    var arrowImg = document.createElement("img");
+    arrowImg.src = "./images/dropdown-arrow-down.svg";
+    arrow.appendChild(arrowImg);
+
+    arrow.style.top = opts.height / 2 - 15 + "px";
+    arrow.style.right = "14px";
+
+    dropdown.appendChild(arrow);
 
     if (opts.backgroundColor) {
-      dropdown.css({ "background-color": opts.backgroundColor });
+      dropdown.style.backgroundColor = opts.backgroundColor;
     }
 
-    selected = $('<div class="dropdown__selected">');
-    dropdown.append(selected);
+    selected = createDiv({ class: "dropdown__selected" });
+    dropdown.appendChild(selected);
 
-    slider = $('<div class="dropdown__slider">');
-    dropdown.append(slider);
+    slider = createDiv({ class: "dropdown__slider" });
+    dropdown.appendChild(slider);
 
     appendAllItems(data);
 
     // make dropdown selectable
-    selected.on("click", function () {
-      if (slider.is(":visible")) {
+    selected.addEventListener("click", function () {
+      if (slider.style.display === "block") {
         if (opts.onClick) opts.onClick("hidden");
-        slider.slideUp("fast");
+
+        slider.style.display = "none";
+
         dropdown
-          .find(".dropdown__arrow img")
-          .attr("src", "./images/dropdown-arrow-down.svg");
+          .querySelector(".dropdown__arrow img")
+          .setAttribute("src", "./images/dropdown-arrow-down.svg");
       } else {
         if (opts.onClick) opts.onClick("visible");
-        slider.slideDown("fast");
+
+        slider.style.display = "block";
+
         dropdown
-          .find(".dropdown__arrow img")
-          .attr("src", "./images/dropdown-arrow-up.svg");
+          .querySelector(".dropdown__arrow img")
+          .setAttribute("src", "./images/dropdown-arrow-up.svg");
       }
     });
-    arrow.on("click", function () {
+
+    arrow.addEventListener("click", function () {
       selected.click();
     });
 
     return dropdown;
   };
+}
+
+function createDiv(options = {}) {
+  /*{
+      class: "myclass",
+      innerHTML: `....`,
+      text: "ddd",
+      click: callback
+    }
+   */
+  const newDiv = document.createElement("div");
+  if ("id" in options) newDiv.id = options.id;
+  if ("class" in options) newDiv.className = options.class;
+  if ("innerHTML" in options) newDiv.innerHTML = options.innerHTML;
+  if ("text" in options) newDiv.textContent = options.text;
+  if ("click" in options) newDiv.addEventListener("click", options.click);
+  if ("attributes" in options) {
+    for (const key in options.attributes) {
+      newDiv.setAttribute(key, options.attributes[key]);
+    }
+  }
+
+  return newDiv;
 }
