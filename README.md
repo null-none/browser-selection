@@ -4,8 +4,6 @@
 
 Lightweight widget for selecting browser and operating system. Injects UI into a container and redirects user based on selected option.
 
-Built with jQuery for simple embedding into static HTML pages.
-
 ---
 
 ## Features
@@ -15,7 +13,6 @@ Built with jQuery for simple embedding into static HTML pages.
 - Redirect based on selection
 - No build step required
 - External CSS file
-- jQuery-based implementation
 
 ---
 
@@ -27,7 +24,6 @@ Built with jQuery for simple embedding into static HTML pages.
 │   ├── images/
 │   ├── fonts/
 │   ├── js/
-│   │   ├── jquery-2.1.4.min.js
 │   │   └── browser-selection.js
 │   ├── browser-selection-styles.css
 │   └── index.html
@@ -62,10 +58,9 @@ Place files into your project. No bundlers or build tools required.
 
 ---
 
-### 3. Include scripts
+### 3. Include script
 
 ```text
-<script src="js/jquery-2.1.4.min.js"></script>
 <script src="js/browser-selection.js"></script>
 ```
 

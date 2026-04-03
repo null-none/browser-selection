@@ -35,6 +35,7 @@
     top: calc($dropdown-text-top + 1px);
     font-weight: 500;
     font-size: $dropdown-font-size;
+    white-space: nowrap;
   }
 
   &__slider {
