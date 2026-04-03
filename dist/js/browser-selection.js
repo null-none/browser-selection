@@ -32,37 +32,6 @@ function MainFc() {
   var g_AllBrowserTypes;
   var g_AllBrowserOrder;
 
-  function range(start, end) {
-    var ret = [];
-    for (var i = start; i <= end; i++) {
-      ret.push(i);
-    }
-    return ret;
-  }
-
-  function rangeP(prefix, start, end) {
-    var ret = [];
-    for (var i = start; i <= end; i++) {
-      ret.push(prefix + i);
-    }
-    return ret;
-  }
-
-  function flat(arr) {
-    var ret = [];
-    for (var i = 0; i < arr.length; i++) {
-      var value = arr[i];
-      if (typeof value === "object") {
-        for (var j = 0; j < value.length; j++) {
-          ret.push(value[j]);
-        }
-      } else {
-        ret.push(value);
-      }
-    }
-    return ret;
-  }
-
   g_AllBrowserOrder = [
     "edge",
     "ie",
@@ -161,331 +130,6 @@ function MainFc() {
     ddg: { text: "DuckDuckGo", icon: "/images/browser-icons/ddg.png" },
     orion: { text: "Orion", icon: "/images/browser-icons/orion.png" },
   };
-
-  g_AllBrowserVersions = {
-    mac26: {
-      safari: [26],
-      chrome: range(122, 140),
-      edge: range(122, 140),
-      firefox: range(113, 143),
-      opera: range(108, 122),
-      brave: flat([rangeP("1.", 64, 71), rangeP("1.", 73, 82)]),
-      vivaldi: flat([
-        rangeP("6.", 1, 2),
-        rangeP("6.", 6, 9),
-        rangeP("7.", 0, 5),
-      ]),
-      tor: ["13", "13.5", "14", "14.5"],
-    },
-    mac15: {
-      safari: [18],
-      chrome: range(122, 132),
-      edge: range(122, 132),
-      firefox: range(113, 134),
-      opera: range(108, 116),
-      brave: flat([rangeP("1.", 64, 71), rangeP("1.", 73, 74)]),
-      vivaldi: flat([
-        rangeP("6.", 1, 2),
-        rangeP("6.", 6, 9),
-        rangeP("7.", 0, 1),
-      ]),
-      tor: ["13", "13.5", "14"],
-    },
-    mac14: {
-      safari: [17],
-      chrome: range(120, 132),
-      edge: range(120, 132),
-      firefox: range(113, 134),
-      opera: range(100, 116),
-      brave: flat([rangeP("1.", 64, 71), rangeP("1.", 73, 74)]),
-      vivaldi: flat([
-        rangeP("6.", 1, 2),
-        rangeP("6.", 4, 9),
-        rangeP("7.", 0, 1),
-      ]),
-      tor: ["13", "13.5", "14"],
-    },
-    mac13: {
-      safari: [16],
-      chrome: range(120, 132),
-      edge: range(120, 132),
-      firefox: range(113, 134),
-      opera: range(100, 116),
-      brave: flat([rangeP("1.", 64, 71), rangeP("1.", 73, 74)]),
-      vivaldi: flat([
-        rangeP("6.", 1, 2),
-        rangeP("6.", 4, 9),
-        rangeP("7.", 0, 1),
-      ]),
-      tor: ["13", "13.5", "14"],
-    },
-    mac12: {
-      safari: [15],
-      chrome: range(120, 132),
-      edge: range(120, 132),
-      firefox: range(113, 134),
-      opera: range(100, 116),
-      brave: flat([rangeP("1.", 64, 71), rangeP("1.", 73, 74)]),
-      vivaldi: flat([
-        rangeP("6.", 1, 2),
-        rangeP("6.", 4, 9),
-        rangeP("7.", 0, 1),
-      ]),
-      tor: ["13", "13.5", "14"],
-    },
-    "android4.4": {
-      chrome: range(77, 81),
-      firefox: range(64, 68),
-    },
-    "android5.0": {
-      chrome: range(90, 95),
-      firefox: range(122, 128),
-    },
-    "android5.1": {
-      chrome: range(90, 95),
-      firefox: range(122, 128),
-    },
-    "android6.0": {
-      chrome: range(100, 106),
-      firefox: range(122, 128),
-    },
-    "android7.0": {
-      chrome: range(115, 119),
-      firefox: range(122, 128),
-    },
-    "android7.1": {
-      chrome: range(115, 119),
-      firefox: range(122, 128),
-    },
-    "android8.0": {
-      chrome: range(122, 126),
-      firefox: range(122, 128),
-    },
-    "android8.1": {
-      chrome: range(122, 126),
-      firefox: range(122, 128),
-    },
-    android9: {
-      chrome: range(122, 126),
-      firefox: range(122, 127),
-    },
-    android10: {
-      chrome: range(100, 126),
-      firefox: range(100, 127),
-    },
-    android11: {
-      chrome: range(100, 126),
-      firefox: range(100, 127),
-    },
-    android12: {
-      chrome: range(100, 126),
-      firefox: range(100, 127),
-    },
-    "android12.1": {
-      chrome: range(100, 126),
-      firefox: range(100, 127),
-    },
-    android13: {
-      chrome: range(100, 126),
-      firefox: range(100, 127),
-    },
-    android14: {
-      chrome: range(100, 126),
-      firefox: range(100, 127),
-    },
-    android15: {
-      chrome: range(100, 126),
-      firefox: range(100, 127),
-    },
-    winxp: {
-      ie: [6, 7, 8],
-      chrome: range(1, 49),
-      firefox: flat([1, 2, 3, 3.5, 3.6, range(4, 52)]),
-      opera: flat([10, 10.5, 11, 11.5, 11.6, 12, 13, 14, range(15, 36)]),
-      mypal: [68],
-      supermium: [132],
-    },
-    winvista: {
-      ie: [7, 8, 9],
-      chrome: range(1, 50),
-      firefox: flat([1, 2, 3, 3.5, 3.6, range(4, 52)]),
-      opera: flat([10, 10.5, 11, 11.5, 11.6, 12, 13, 14, range(15, 36)]),
-      mypal: [68],
-      supermium: range(122, 132),
-    },
-    win7: {
-      ie: [8, 9, 10, 11],
-      chrome: range(1, 109),
-      firefox: flat([1, 2, 3, 3.5, 3.6, range(4, 115)]),
-      opera: flat([
-        10,
-        "10.50",
-        11,
-        "11.50",
-        "11.60",
-        12,
-        13,
-        14,
-        range(15, 95),
-      ]),
-      mypal: [68],
-      supermium: range(122, 132),
-    },
-    win8: {
-      ie: [10],
-      chrome: range(1, 109),
-      firefox: flat([1, 2, 3, 3.5, 3.6, range(4, 115)]),
-      opera: flat([
-        10,
-        "10.50",
-        11,
-        "11.50",
-        "11.60",
-        12,
-        13,
-        14,
-        range(15, 95),
-      ]),
-      mypal: [68],
-      supermium: range(122, 132),
-    },
-    "win8.1": {
-      ie: [11],
-      chrome: range(1, 109),
-      firefox: flat([1, 2, 3, 3.5, 3.6, range(4, 115)]),
-      opera: flat([
-        10,
-        "10.50",
-        11,
-        "11.50",
-        "11.60",
-        12,
-        13,
-        14,
-        range(15, 95),
-      ]),
-      mypal: [68],
-      supermium: range(122, 132),
-    },
-    win10: {
-      tor: [7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5],
-      edge: range(100, 127),
-      chrome: range(1, 127),
-      firefox: flat([1, 2, 3, 3.5, 3.6, range(4, 128)]),
-      opera: flat([
-        10,
-        "10.50",
-        11,
-        "11.50",
-        "11.60",
-        12,
-        13,
-        14,
-        range(15, 112),
-      ]),
-      brave: rangeP("1.", 0, 68),
-      vivaldi: flat([
-        rangeP("1.", 0, 15),
-        rangeP("2.", 0, 11),
-        rangeP("3.", 0, 8),
-        rangeP("4.", 0, 3),
-        rangeP("5.", 0, 8),
-        rangeP("6.", 0, 8),
-      ]),
-    },
-    win11: {
-      tor: [7.5, 8, 8.5, 9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5],
-      edge: range(100, 127),
-      chrome: range(1, 127),
-      firefox: flat([1, 2, 3, 3.5, 3.6, range(4, 128)]),
-      opera: flat([
-        10,
-        "10.50",
-        11,
-        "11.50",
-        "11.60",
-        12,
-        13,
-        14,
-        range(15, 112),
-      ]),
-      brave: rangeP("1.", 0, 68),
-      vivaldi: flat([
-        rangeP("1.", 0, 15),
-        rangeP("2.", 0, 11),
-        rangeP("3.", 0, 8),
-        rangeP("4.", 0, 3),
-        rangeP("5.", 0, 8),
-        rangeP("6.", 0, 8),
-      ]),
-    },
-    ios15: {
-      safari: [15],
-      orion: rangeP("1.", 1, 4),
-      ddg: rangeP("7.", 189, 199),
-      firefox: range(137, 146),
-      opera: ["4.5", "4.6", "4.7", rangeP("5.", 0, 5), "6.0"],
-      vivaldi: rangeP("6.", 3, 7),
-      brave: rangeP("1.", 56, 66),
-      edge: range(116, 125),
-      chrome: [range(108, 111), range(120, 125)],
-    },
-    ios16: {
-      safari: [16],
-      orion: rangeP("1.", 1, 4),
-      ddg: rangeP("7.", 189, 199),
-      firefox: range(137, 146),
-      opera: [rangeP("5.", 0, 5), rangeP("6.", 0, 3)],
-      vivaldi: [rangeP("6.", 4, 9), rangeP("7.", 0, 2), "7.4"],
-      brave: rangeP("1.", 69, 79),
-      edge: range(128, 137),
-      chrome: range(128, 137),
-    },
-    ios17: {
-      safari: [17],
-      orion: rangeP("1.", 1, 4),
-      ddg: rangeP("7.", 189, 199),
-      firefox: range(137, 146),
-      opera: [rangeP("5.", 0, 5), rangeP("6.", 0, 3)],
-      vivaldi: [rangeP("6.", 7, 9), rangeP("7.", 0, 2), rangeP("7.", 4, 7)],
-      brave: rangeP("1.", 76, 85),
-      edge: range(134, 143),
-      chrome: range(134, 143),
-    },
-    ios18: {
-      safari: [18],
-      orion: rangeP("1.", 1, 4),
-      ddg: rangeP("7.", 189, 199),
-      firefox: range(137, 146),
-      opera: [rangeP("5.", 0, 5), rangeP("6.", 0, 3)],
-      vivaldi: [rangeP("6.", 7, 9), rangeP("7.", 0, 2), rangeP("7.", 4, 7)],
-      brave: rangeP("1.", 76, 85),
-      edge: range(134, 143),
-      chrome: range(134, 143),
-    },
-    ios26: {
-      safari: [26],
-      orion: rangeP("1.", 1, 4),
-      ddg: [rangeP("7.", 189, 193), rangeP("7.", 195, 199)],
-      firefox: range(137, 146),
-      opera: [rangeP("5.", 0, 5), rangeP("6.", 0, 3)],
-      vivaldi: [rangeP("6.", 7, 9), rangeP("7.", 0, 2), rangeP("7.", 4, 7)],
-      brave: rangeP("1.", 76, 85),
-      edge: range(134, 143),
-      chrome: range(134, 143),
-    },
-  };
-
-  /*function getAllBrowserVersionsJSON() {
-    fetch("/data/browsers.json")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log("ok");
-        g_AllBrowserVersions = updateBrowserList(data);
-      });
-  }*/
 
   function platformVersionToShortName(platformVersion) {
     return platformVersion.split(" ")[1].toLowerCase();
@@ -704,57 +348,6 @@ function MainFc() {
     });
   }
 
-  var versionDropdown = new Dropdown({
-    width: 90,
-    height: 45,
-    iconWidth: 20,
-    iconHeight: 20,
-    center: true,
-    data: [],
-    callback: function (selected) {
-      var data = init(
-        document.querySelector("#platform .dropdown__selected .dropdown__text")
-          ?.textContent || "",
-        document.querySelector("#browser .dropdown__selected .dropdown__text")
-          ?.textContent || "",
-        selected,
-      );
-      lastChanges(data);
-    },
-  });
-
-  document.querySelector("#version")?.append(versionDropdown.create());
-
-  var browserDropdown = new Dropdown({
-    width: 200,
-    height: 45,
-    iconWidth: 23,
-    iconHeight: 23,
-    data: [],
-    callback: function (selected) {
-      var data = init(
-        document.querySelector("#platform .dropdown__selected .dropdown__text")
-          ?.textContent || "",
-        selected,
-      );
-      lastChanges(data);
-    },
-  });
-  document.querySelector("#browser").append(browserDropdown.create());
-
-  var platformDropdown = new Dropdown({
-    width: 200,
-    height: 45,
-    iconWidth: 23,
-    iconHeight: 23,
-    data: [],
-    callback: function (selected) {
-      var data = init(selected);
-      lastChanges(data);
-    },
-  });
-  document.querySelector("#platform").append(platformDropdown.create());
-
   function init(platformName, browserName, version) {
     var platform = getPlatform(platformName);
     if (!browserName) {
@@ -807,35 +400,98 @@ function MainFc() {
     });
   }
 
-  localStorageGet(
-    ["platformName", "browserName", "version", "browsers", "cacheTime"],
-    function (items) {
-      if (items.browsers && items.cacheTime) {
-        if (Date.now() - items.cacheTime > 3 * 3600 * 1000) {
-          cacheLatestBrowsers();
-        } else {
-          g_AllBrowserVersions = items.browsers;
-        }
-      } else {
-        cacheLatestBrowsers(true);
-      }
+  var versionDropdown, browserDropdown, platformDropdown;
 
-      if (items.platformName && items.browserName && items.version) {
-        init(items.platformName, items.browserName);
-        document
-          .querySelectorAll("#version .dropdown__slider .dropdown__item")
-          .forEach(function (el) {
-            if (el.textContent === items.version) {
-              document.querySelector(
-                "#version .dropdown__selected .dropdown__text",
-              ).textContent = el.textContent;
+  fetch("/data/browsers.json")
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      g_AllBrowserVersions = updateBrowserList(data);
+
+      versionDropdown = new Dropdown({
+        width: 90,
+        height: 45,
+        iconWidth: 20,
+        iconHeight: 20,
+        center: true,
+        data: [],
+        callback: function (selected) {
+          var data = init(
+            document.querySelector(
+              "#platform .dropdown__selected .dropdown__text",
+            )?.textContent || "",
+            document.querySelector(
+              "#browser .dropdown__selected .dropdown__text",
+            )?.textContent || "",
+            selected,
+          );
+          lastChanges(data);
+        },
+      });
+      document.querySelector("#version").append(versionDropdown.create());
+
+      browserDropdown = new Dropdown({
+        width: 200,
+        height: 45,
+        iconWidth: 23,
+        iconHeight: 23,
+        data: [],
+        callback: function (selected) {
+          var data = init(
+            document.querySelector(
+              "#platform .dropdown__selected .dropdown__text",
+            )?.textContent || "",
+            selected,
+          );
+          lastChanges(data);
+        },
+      });
+      document.querySelector("#browser").append(browserDropdown.create());
+
+      platformDropdown = new Dropdown({
+        width: 200,
+        height: 45,
+        iconWidth: 23,
+        iconHeight: 23,
+        data: [],
+        callback: function (selected) {
+          var data = init(selected);
+          lastChanges(data);
+        },
+      });
+      document.querySelector("#platform").append(platformDropdown.create());
+
+      localStorageGet(
+        ["platformName", "browserName", "version", "browsers", "cacheTime"],
+        function (items) {
+          if (items.browsers && items.cacheTime) {
+            if (Date.now() - items.cacheTime > 3 * 3600 * 1000) {
+              cacheLatestBrowsers();
+            } else {
+              g_AllBrowserVersions = items.browsers;
             }
-          });
-      } else {
-        init("Windows 10", "Chrome");
-      }
-    },
-  );
+          } else {
+            cacheLatestBrowsers(true);
+          }
+
+          if (items.platformName && items.browserName && items.version) {
+            init(items.platformName, items.browserName);
+            document
+              .querySelectorAll("#version .dropdown__slider .dropdown__item")
+              .forEach(function (el) {
+                if (el.textContent === items.version) {
+                  document.querySelector(
+                    "#version .dropdown__selected .dropdown__text",
+                  ).textContent = el.textContent;
+                }
+              });
+          } else {
+            init("Windows 10", "Chrome");
+          }
+        },
+      );
+    });
 
   // make run work
   document.querySelector("#run button").addEventListener("click", function () {
